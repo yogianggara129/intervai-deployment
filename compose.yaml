@@ -7,7 +7,7 @@ services:
       - proxy
 
   api:
-    image: ghcr.io/yogianggara129/intervai-api:sha-PENDING
+    image: ghcr.io/yogianggara129/intervai-api:sha-9a2d74f53ede1dc5a1c4c785a166bc18e8b47ff4
     container_name: intervai-api
     env_file:
       - .env
