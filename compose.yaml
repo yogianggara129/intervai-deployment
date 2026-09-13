@@ -3,6 +3,8 @@ services:
     image: ghcr.io/yogianggara129/intervai-web:sha-b5e3200db2e0dec64392e14fdceeebfc4f5c6850
     container_name: intervai-web
     restart: unless-stopped
+    environment:
+      - VITE_BASE_URL
     networks:
       - proxy
 
@@ -10,6 +12,13 @@ services:
     image: ghcr.io/yogianggara129/intervai-api:sha-9a2d74f53ede1dc5a1c4c785a166bc18e8b47ff4
     container_name: intervai-api
     restart: unless-stopped
+    environment:
+      - PORT
+      - ORIGIN_URL
+      - GEMINI_MODEL
+      - GEMINI_API_KEY
+      - MAX_QUESTIONS
+      - MAX_FILE_SIZE
     networks:
       - proxy
 
