@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/yogianggara129/intervai-web:sha-PENDING
+    image: ghcr.io/yogianggara129/intervai-web:sha-b5e3200db2e0dec64392e14fdceeebfc4f5c6850
     container_name: intervai-web
     restart: unless-stopped
     networks:
