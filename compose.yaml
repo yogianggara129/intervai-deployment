@@ -1,13 +1,13 @@
 services:
   web:
-    image: ghcr.io/yogianggara129/intervai-web:sha-${WEB_SHA:?set WEB_SHA in .env}
+    image: ghcr.io/yogianggara129/intervai-web:sha-PENDING
     container_name: intervai-web
     restart: unless-stopped
     networks:
       - proxy
 
   api:
-    image: ghcr.io/yogianggara129/intervai-api:sha-${API_SHA:?set API_SHA in .env}
+    image: ghcr.io/yogianggara129/intervai-api:sha-PENDING
     container_name: intervai-api
     env_file:
       - .env

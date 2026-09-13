@@ -1,0 +1,34 @@
+name: Bump image tag
+
+on:
+  repository_dispatch:
+    types: [web-updated, api-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DEPLOY_PAT }}
+
+      - name: Update compose.yaml
+        env:
+          IMAGE: yogianggara129/intervai-${{ github.event.action == 'web-updated' && 'web' || 'api' }}
+          SHA: ${{ github.event.client_payload.sha }}
+        run: |
+          sed -i -E "s|(ghcr.io/${IMAGE}:).*|\1sha-${SHA}|" compose.yaml
+
+      - name: Commit and push
+        env:
+          IMAGE: ${{ github.event.action }}
+          SHA: ${{ github.event.client_payload.sha }}
+        run: |
+          git diff --quiet && echo "no change" && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: bump ${IMAGE} to ${SHA}"
+          git push
