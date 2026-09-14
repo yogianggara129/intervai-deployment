@@ -16,7 +16,7 @@ services:
       - traefik.http.services.intervai-web.loadbalancer.server.port=8043
 
   api:
-    image: ghcr.io/yogianggara129/intervai-api:sha-9a2d74f53ede1dc5a1c4c785a166bc18e8b47ff4
+    image: ghcr.io/yogianggara129/intervai-api:sha-521e7da494f0ae477e5357eb3cb752a7fb01016d
     container_name: intervai-api
     restart: unless-stopped
     environment:
