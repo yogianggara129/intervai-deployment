@@ -8,6 +8,13 @@ services:
     networks:
       - proxy
 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.intervai-web.rule=Host(`${INTERVAI_HOST}`)
+      - traefik.http.routers.intervai-web.entrypoints=web
+      - traefik.http.routers.intervai-web.service=intervai-web
+      - traefik.http.services.intervai-web.loadbalancer.server.port=80
+
   api:
     image: ghcr.io/yogianggara129/intervai-api:sha-9a2d74f53ede1dc5a1c4c785a166bc18e8b47ff4
     container_name: intervai-api
@@ -21,6 +28,12 @@ services:
       - MAX_FILE_SIZE
     networks:
       - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.intervai-api.rule=Host(`${INTERVAI_HOST}`) && PathPrefix(`/api`)
+      - traefik.http.routers.intervai-api.entrypoints=web
+      - traefik.http.routers.intervai-api.service=intervai-api
+      - traefik.http.services.intervai-api.loadbalancer.server.port=${PORT}
 
 networks:
   proxy:
