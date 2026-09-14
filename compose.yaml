@@ -13,7 +13,7 @@ services:
       - traefik.http.routers.intervai-web.rule=Host(`${INTERVAI_HOST}`)
       - traefik.http.routers.intervai-web.entrypoints=web
       - traefik.http.routers.intervai-web.service=intervai-web
-      - traefik.http.services.intervai-web.loadbalancer.server.port=80
+      - traefik.http.services.intervai-web.loadbalancer.server.port=8043
 
   api:
     image: ghcr.io/yogianggara129/intervai-api:sha-9a2d74f53ede1dc5a1c4c785a166bc18e8b47ff4
