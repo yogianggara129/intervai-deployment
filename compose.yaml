@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/yogianggara129/intervai-web:sha-b5e3200db2e0dec64392e14fdceeebfc4f5c6850
+    image: ghcr.io/yogianggara129/intervai-web:sha-66c3993d21df6c8cc4a07da7cd36069b487af26d
     container_name: intervai-web
     restart: unless-stopped
     environment:
